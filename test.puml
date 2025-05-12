@@ -1,0 +1,127 @@
+@startuml
+!theme vibrant
+
+class FAQExpandableListAdapter {
+  + int getGroupCount()
+  + int getChildrenCount(int)
+  + Object getGroup(int)
+  + Object getChild(int, int)
+  + boolean hasStableIds()
+  + View getGroupView(int, boolean, View, ViewGroup)
+  + View getChildView(int, int, boolean, View, ViewGroup)
+}
+
+class MainActivity {
+  - FirebaseFirestore db
+  - FusedLocationProviderClient fusedLocationClient
+  - List<Scooter> scooterList
+  + void onCreate(Bundle)
+  + void loadScooterInfo(String)
+  + boolean onCreateOptionsMenu(Menu)
+  + void showUserLocation()
+  + void loadScootersFromFirestore()
+  + void displayScootersOnMap()
+  + void showScooterInfo(Scooter)
+  + void showScooterList()
+}
+
+
+class PaymentActivity {
+  + void onCreate(Bundle)
+  + void saveCardData()
+}
+
+class RideTimerService {
+  + void onCreate()
+  + int onStartCommand(Intent, int, int)
+  + void onDestroy()
+  + void startRideTimer(long)
+  + void endRide()
+}
+
+class ScooterAdapter {
+  + View getView(int, View, ViewGroup)
+}
+
+class FAQActivity {
+  + void onCreate(Bundle)
+  + void prepareListData()
+}
+
+class TripHistoryActivity {
+  + void onCreate(Bundle)
+  + void loadTripHistory()
+}
+
+class ScooterListActivity {
+  + void onCreate(Bundle)
+  + void getUserLocation()
+  + void loadScooters()
+  + void sortByDistance()
+}
+
+class Trip {
+  + String getUserId()
+  + void setUserId(String)
+  + double getDistance()
+  + void setDistance(double)
+}
+
+class ScooterInfoBottomSheet {
+  + void startRide(long)
+  + void endRide()
+}
+
+
+class TripHistoryAdapter {
+  + void onCreateViewHolder(ViewGroup, int)
+  + void onBindViewHolder(ViewHolder, int)
+}
+
+
+
+class ProfileActivity {
+  + void onCreate(Bundle)
+  + void saveProfileData()
+  + void loadProfileData()
+}
+
+class LoginActivity {
+  + void onCreate(Bundle)
+  + void loginUser(String, String)
+}
+
+class Scooter {
+  + String getId()
+  + Double getBattery()
+  + GeoPoint getLocation()
+  + void setDistance(float)
+}
+
+class RegisterActivity {
+  + void onCreate(Bundle)
+  + void registerUser(String, String)
+}
+
+' Связи между классами
+MainActivity --> FAQActivity : uses
+MainActivity --> TripHistoryActivity : uses
+MainActivity --> ScooterListActivity : uses
+MainActivity --> ScooterInfoBottomSheet : displays
+MainActivity --> PaymentActivity : calls
+RideTimerService --> MainActivity : updates
+RideTimerService --> ScooterInfoBottomSheet : interacts
+Scooter <-- ScooterInfoBottomSheet : contains
+Trip <-- TripHistoryActivity : displays
+
+' Агрегации и композиций
+ScooterAdapter --> Scooter : displays
+Trip <-- TripHistoryAdapter : displays
+
+' Дополнительные связи
+MainActivity <--left ProfileActivity : updates profile
+RegisterActivity <--left ProfileActivity : navigates to
+LoginActivity --> MainActivity : navigates to
+RegisterActivity --> MainActivity : navigates to
+FAQExpandableListAdapter <-- FAQActivity : uses
+@enduml

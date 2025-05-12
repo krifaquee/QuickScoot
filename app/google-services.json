@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "118446039990",
+    "project_id": "quickscoot-ada34",
+    "storage_bucket": "quickscoot-ada34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118446039990:android:6e423302ceb8a31f0fd717",
+        "android_client_info": {
+          "package_name": "com.example.quickscoot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_83QumSEH4l7iVYN7XNz33hlx_wnWDF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,24 @@
+<menu xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/profile"
+        android:title="@string/nav_profile" />
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/history"
+        android:title="История поездок"/>
+    <item
+        android:id="@+id/nav_payment"
+        android:icon="@drawable/wallet"
+        android:title="Способ оплаты"/>
+    <item
+        android:id="@+id/nav_faq"
+        android:icon="@drawable/information"
+        android:title="Руководство"/>
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/logout"
+        android:title="Выйти"/>
+</menu>

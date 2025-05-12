@@ -1,0 +1,129 @@
+@startuml
+class EditAboutMeActivity {
+- EditText editFirstName
+- EditText editLastName
+- EditText editAboutMe
+# void onCreate(Bundle)
+}
+
+
+class ScooterInfoBottomSheet {
+- String battery
+- String id
+- String range
++ {static} ScooterInfoBottomSheet newInstance(String,String,String)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class MainActivity {
+- {static} int EDIT_ABOUT_ME_REQUEST_CODE
+- FirebaseAuth mAuth
+- MapView mapView
+- TextView aboutMeText
+- FirebaseFirestore db
+- FusedLocationProviderClient fusedLocationClient
+- List<Scooter> scooterList
+- GeoPoint userLocation
+- {static} int REQUEST_LOCATION_PERMISSION
+- {static} int CAMERA_PERMISSION_CODE
+# void onCreate(Bundle)
+- void requestCameraPermission()
+- void requestLocationPermission()
+- void startQrCodeScanner()
+# void onActivityResult(int,int,Intent)
+- void loadScooterInfo(String)
+- void getScooterById(String,ScooterCallback)
++ void onRequestPermissionsResult(int,String[],int[])
+- void showUserLocation()
+- void loadScootersFromFirestore()
+- void displayScootersOnMap()
+- void showScooterInfo(Scooter)
+- String calculateRange(Double)
+- void showScooterList()
+}
+
+
+interface MainActivity$ScooterCallback {
+~ void onCallback(Scooter)
+}
+
+class ScooterAdapter {
++ View getView(int,View,ViewGroup)
+}
+
+class ScooterSorter {
++ {static} void sortByDistance(List<Scooter>,Location)
++ {static} void sortByBattery(List<Scooter>)
+- {static} float getDistance(Location,org.osmdroid.util.GeoPoint)
+}
+
+class ScooterListActivity {
+- {static} int LOCATION_PERMISSION_REQUEST_CODE
+- ListView scooterListView
+- List<Scooter> scooterList
+- FirebaseFirestore db
+- double userLatitude
+- double userLongitude
+- FusedLocationProviderClient fusedLocationClient
+# void onCreate(Bundle)
+- void getUserLocation()
+- void loadScooters()
+- void sortByDistance()
+- void sortByBattery()
+- void sortById()
+- void updateAdapter()
++ void onRequestPermissionsResult(int,String[],int[])
+}
+
+
+class LoginActivity {
+- EditText emailEditText
+- Button loginButton
+- TextView registerButton
+- FirebaseAuth mAuth
+# void onCreate(Bundle)
+- void loginUser(String,String)
+}
+
+
+class Scooter {
+- String id
+- Double battery
+- org.osmdroid.util.GeoPoint location
+- String status
+- float distance
++ {static} Creator<Scooter> CREATOR
++ int describeContents()
++ void writeToParcel(Parcel,int)
++ String getId()
++ Double getBattery()
++ org.osmdroid.util.GeoPoint getLocation()
++ String getStatus()
++ float getDistance()
++ void setDistance(float)
++ {static} GeoPoint convertGeoPoint(com.google.firebase.firestore.GeoPoint)
+}
+
+
+class RegisterActivity {
+- EditText emailEditText
+- Button registerButton
+- FirebaseAuth mAuth
+# void onCreate(Bundle)
+- void registerUser(String,String)
+}
+
+
+
+
+AppCompatActivity <|-- EditAboutMeActivity
+BottomSheetDialogFragment <|-- ScooterInfoBottomSheet
+AppCompatActivity <|-- MainActivity
+MainActivity +.. MainActivity$ScooterCallback
+ArrayAdapter <|-- ScooterAdapter
+AppCompatActivity <|-- ScooterListActivity
+AppCompatActivity <|-- LoginActivity
+Parcelable <|.. Scooter
+AppCompatActivity <|-- RegisterActivity
+@enduml

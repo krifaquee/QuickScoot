@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">QuickScoot</string>
+    <string-array name="sort_options">
+        <item>Сортировать по ID</item>
+        <item>Сортировать по заряду</item>
+        <item>Сортировать по расстоянию</item>
+    </string-array>
+    <string-array name="payment_methods">
+        <item>Карта</item>
+        <item>Наличные</item>
+        <item>Электронный кошелек</item>
+    </string-array>
+    <string name="nav_profile">Профиль</string>
+</resources>
+
+
